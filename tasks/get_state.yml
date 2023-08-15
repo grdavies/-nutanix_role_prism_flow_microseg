@@ -15,3 +15,7 @@
     var: nutanix_flow_microseg_state
   when:
     - nutanix_debug
+
+- name: Current status of Flow Microsegmentation service(s)
+  debug:
+    msg: "Flow Microsegmentation is currently in a '{{ nutanix_flow_microseg_state.json.service_enablement_status }}' state."
