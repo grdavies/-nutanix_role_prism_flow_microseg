@@ -14,17 +14,17 @@
 # - name: Check Flow Microseg Pre-Reqs
 #   include_tasks: check_prereqs.yml
 #   when:
-#     - nutanix_flow_microseg_state.service_enablement_status != "ENABLED"
+#     - nutanix_flow_microseg_state.json.service_enablement_status != "ENABLED"
 #     - nutanix_flow_mseg_enable | default(False)
 
 - name: Enable Flow Microsegmentation
   include_tasks: enable_feature.yml
   when:
-    - nutanix_flow_microseg_state.service_enablement_status != "ENABLED"
+    - nutanix_flow_microseg_state.json.service_enablement_status != "ENABLED"
     - nutanix_flow_mseg_enable | default(False)
 
 - name: Disable Flow Microsegmentation
   include_tasks: disable_feature.yml
   when:
-    - nutanix_flow_microseg_state.service_enablement_status == "ENABLED"
+    - nutanix_flow_microseg_state.json.service_enablement_status == "ENABLED"
     - not nutanix_flow_mseg_enable | default(True)
